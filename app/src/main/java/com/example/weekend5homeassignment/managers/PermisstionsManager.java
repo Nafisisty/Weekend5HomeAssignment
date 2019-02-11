@@ -53,70 +53,18 @@ public class PermisstionsManager {
             case MY_PERMISSIONS_REQUEST_READ_CONTACTS: {
                 if(grantResult.length > 0 && grantResult[0] == PackageManager.PERMISSION_GRANTED) {
 
-                    Log.d("TAG", "checkResult: ");
-
                     iPermissionManager.onPermissionResult(true);
 
                 } else {
 
                     iPermissionManager.onPermissionResult(false);
 
-                    Log.d("TAG", "checkResult: ");
                 }
             }
         }
 
     }
 
-
-
-
-    public void checkPermissionForLocation() {
-
-        if(ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
-            if(ActivityCompat.shouldShowRequestPermissionRationale((Activity) context, Manifest.permission.ACCESS_FINE_LOCATION)) {
-
-            } else {
-                ActivityCompat.requestPermissions((Activity) context,
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        MY_PERMISSIONS_REQUEST_LOCATION);
-            }
-
-        } else {
-
-            requestPermissionForLocation();
-
-        }
-
-    }
-
-    public void requestPermissionForLocation() {
-        ActivityCompat.requestPermissions((Activity) context,
-                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                MY_PERMISSIONS_REQUEST_LOCATION);
-    }
-
-    public void checkResultForLocation(int requestCode, String permission[], int[] grantResult) {
-
-        switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_LOCATION: {
-                if(grantResult.length > 0 && grantResult[0] == PackageManager.PERMISSION_GRANTED) {
-
-                    Log.d("TAG", "checkResultForLocation: ");
-
-                    iPermissionManager.onPermissionResult(true);
-
-                } else {
-
-                    iPermissionManager.onPermissionResult(false);
-
-                    Log.d("TAG", "checkResultForLocation: ");
-                }
-            }
-        }
-
-    }
 
     public interface IPermissionManager {
         void onPermissionResult(boolean isGranted);

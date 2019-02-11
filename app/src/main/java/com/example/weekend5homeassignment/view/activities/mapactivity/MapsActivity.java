@@ -71,7 +71,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             double lat = addressLatLng.get(0).getLatitude();
             double lng = addressLatLng.get(0).getLongitude();
             contactLatLng = new LatLng(lat, lng);
-            Log.d("TAG", "getCurrentLatLngFromAddress: " + contactLatLng.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
